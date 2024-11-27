@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+</head>
+<body>
+    <h1>Admin Panel</h1>
+    
+    <!-- List of users -->
+    <h2>Users</h2>
+    <ul>
+        {% for user in users %}
+        <li>
+            Name: {{ user.name }}, WhatsApp: {{ user.whatsapp }}, Status: {{ user.status }}
+            <form method="post" action="/update_status">
+                <input type="hidden" name="whatsapp" value="{{ user.whatsapp }}">
+                <select name="status">
+                    <option value="verified">Verified</option>
+                    <option value="rejected">Rejected</option>
+                </select>
+                <button type="submit">Update Status</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Add more forms for sending links, renewing users, etc. -->
+</body>
+</html>
